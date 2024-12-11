@@ -1,4 +1,4 @@
-# Copyright 2022 The MT3 Authors.
+# Copyright 2024 The MT3 Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Lint as: python3
 """Install mt3."""
 
 import os
@@ -39,19 +38,19 @@ setuptools.setup(
     scripts=[],
     install_requires=[
         'absl-py',
-        'ddsp',
-        'flax',
+        'flax @ git+https://github.com/google/flax#egg=flax',
         'gin-config',
         'immutabledict',
         'librosa',
         'mir_eval',
-        'note_seq',
+        'note-seq @ git+https://github.com/magenta/note-seq#egg=note_seq',
         'numpy',
         'pretty_midi',
         'scikit-learn',
         'scipy',
-        'seqio',
+        'seqio @ git+https://github.com/google/seqio#egg=seqio',
         't5',
+        't5x @ git+https://github.com/google-research/t5x#egg=t5x',
         'tensorflow',
         'tensorflow-datasets',
     ],

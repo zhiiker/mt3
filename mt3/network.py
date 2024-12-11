@@ -1,4 +1,4 @@
-# Copyright 2022 The MT3 Authors.
+# Copyright 2024 The MT3 Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -171,7 +171,7 @@ class Encoder(nn.Module):
     inputs_positions = jnp.arange(seq_length)[None, :]
 
     # [batch, length, depth] -> [batch, length, emb_dim]
-    x = layers.DenseGeneral(
+    x = layers.DenseGeneral(  # pytype: disable=wrong-arg-types  # jax-types
         cfg.emb_dim,
         dtype=cfg.dtype,
         kernel_init=nn.linear.default_kernel_init,
@@ -214,7 +214,7 @@ class Decoder(nn.Module):
     decoder_positions = jnp.arange(seq_length)[None, :]
 
     # [batch, length] -> [batch, length, emb_dim]
-    y = layers.Embed(
+    y = layers.Embed(  # pytype: disable=wrong-arg-types  # jax-types
         num_embeddings=cfg.vocab_size,
         features=cfg.emb_dim,
         dtype=cfg.dtype,

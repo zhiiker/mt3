@@ -1,4 +1,4 @@
-# Copyright 2022 The MT3 Authors.
+# Copyright 2024 The MT3 Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -217,7 +217,7 @@ class GenericTokenVocabulary(seqio.Vocabulary):
         return DECODED_INVALID_ID
       else:
         return encoded_id - self._num_special_tokens
-    ids = [_decode_id(i) for i in ids]
+    ids = [_decode_id(int(i)) for i in ids]
     return ids
 
   def _encode_tf(self, token_ids: tf.Tensor) -> tf.Tensor:

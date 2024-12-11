@@ -1,4 +1,4 @@
-# Copyright 2022 The MT3 Authors.
+# Copyright 2024 The MT3 Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ with_sharding_constraint = nn_partitioning.with_sharding_constraint
 Array = jnp.ndarray
 DType = jnp.dtype
 PRNGKey = jnp.ndarray
-Shape = Iterable[int]
+Shape = Sequence[int]
 Activation = Callable[..., Array]
 # Parameter initializers.
 Initializer = Callable[[PRNGKey, Shape, DType], Array]
@@ -569,7 +569,7 @@ class FixedEmbed(nn.Module):
   def setup(self):
     # The key is set to None because sinusoid init is deterministic.
     shape = (self.max_length, self.features)
-    self.embedding = self.embedding_init(None, shape, self.dtype)  # pylint: disable=too-many-function-args
+    self.embedding = self.embedding_init(None, shape, self.dtype)  # pylint: disable=too-many-function-args  # pytype: disable=wrong-arg-types  # jax-ndarray
 
   @nn.compact
   def __call__(self,
@@ -827,4 +827,4 @@ def make_decoder_mask(decoder_target_tokens: Array,
         make_attention_mask(
             decoder_segment_ids, decoder_segment_ids, jnp.equal, dtype=dtype))
 
-  return combine_masks(*masks, dtype=dtype)
+  return combine_masks(*masks, dtype=dtype)  # pytype: disable=bad-return-type  # jax-ndarray
